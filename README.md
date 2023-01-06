@@ -1,2 +1,2 @@
-# dash-game-nalysis
+# dash-game-alysis
 Dashboard com PostgreSQL 
