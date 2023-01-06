@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    build: .docker/postgres
+    ports:
+      - '5432:5432'
+    container_name: 'pgsql-dash'
+    restart: always
+    tty: true
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=games
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: game-pgadmin
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - '8000:80'
+    depends_on:
+      - db
